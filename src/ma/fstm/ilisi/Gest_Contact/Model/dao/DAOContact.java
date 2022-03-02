@@ -1,10 +1,7 @@
 package ma.fstm.ilisi.Gest_Contact.Model.dao;
 import ma.fstm.ilisi.Gest_Contact.Model.bo.Contact;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,13 +10,13 @@ public class DAOContact implements IDAOContact{
     private static DAOContact daoContact=null;
     public static DAOContact getDAOContact(){
        if(daoContact==null)daoContact=new DAOContact();
-       return  daoContact;
+       return daoContact;
     }
     private DAOContact(){
 
     }
     @Override
-    public void Create(Contact user) {
+    public boolean Create(Contact user) {
         try {
             PreparedStatement pr=Connexion.getCon().prepareStatement("insert into Contacts(prenom,Nom,tel,email) values(?,?,?,?) ");
             pr.setString(1,user.getPrenom());
@@ -27,8 +24,10 @@ public class DAOContact implements IDAOContact{
             pr.setString(3,user.getTel());
             pr.setString(4,user.getEmail());
             pr.executeUpdate();
+            return true;
         }catch (SQLException e){
             System.err.println(e);
+            return false;
         }
     }
 
@@ -36,8 +35,8 @@ public class DAOContact implements IDAOContact{
     public Collection<Contact> Retrieve() {
         List<Contact> Contacts=new LinkedList<Contact>();
         try {
-            PreparedStatement pr=Connexion.getCon().prepareStatement("select * from Contacts");
-            ResultSet resultSet=pr.executeQuery();
+            Statement pr=Connexion.getCon().createStatement();
+            ResultSet resultSet=pr.executeQuery("select * from Contacts");
             while (resultSet.next())
             {
                 Contact user=ExtractContact(resultSet);

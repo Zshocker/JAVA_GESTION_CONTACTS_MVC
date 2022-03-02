@@ -36,8 +36,6 @@ public class MainApp
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.insertContact(Nom.getText(),Prenom.getText(), Tel.getText(), Email.getText());
-
-
                 Nom.setText("");
                 Prenom.setText("");
                 Tel.setText("");

@@ -1,4 +1,7 @@
 package ma.fstm.ilisi.Gest_Contact.Model.bo;
+
+import java.util.Objects;
+
 public class Contact {
     private int id;
     private String tel;
@@ -65,5 +68,13 @@ public class Contact {
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return id == contact.id;
     }
 }

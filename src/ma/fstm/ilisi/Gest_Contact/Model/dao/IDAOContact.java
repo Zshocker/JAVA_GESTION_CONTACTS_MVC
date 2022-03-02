@@ -7,7 +7,7 @@ import ma.fstm.ilisi.Gest_Contact.Model.bo.Contact;
 import java.util.Collection;
 
 public interface IDAOContact {
-    void Create(Contact user);
+    boolean Create(Contact user);
     Collection<Contact> Retrieve();
     void update(Contact user);
     boolean delete(Contact user);

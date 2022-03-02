@@ -12,7 +12,7 @@ public class Connexion {
     private static Connection createConn(){
         try {
             Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/Contacts","hp","123");
+            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/Contact_DB","Hicham","hich");
         }catch (ClassNotFoundException e){
             System.err.println(e);
             return  null;
