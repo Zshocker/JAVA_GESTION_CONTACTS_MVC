@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.org/dtd/hibernate-mapping-2.0.dtd">
+<hibernate-mapping package= "ma.fstm.ilisi.Gest_Contact.Model.bo" >
+    <class name="Contact" table="contacts">
+        <id name="id" type="int" >
+            <generator class="identity">
+
+            </generator>
+        </id>
+        <property name="tel" type="string" not-null="true"  />
+        <property name="nom" type="string" />
+        <property name="prenom" type="string" />
+        <property name="email" type="string" />
+    </class>
+</hibernate-mapping>
