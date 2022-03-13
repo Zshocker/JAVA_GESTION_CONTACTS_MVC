@@ -13,7 +13,7 @@ public class FabricSession
         if(sessionFactory==null){
             try {
                 Configuration configuration=new Configuration();
-                configuration.configure("hibernate.cfg.xml");
+                configuration.configure("V1/hibernate.cfg.xml");
                 sessionFactory=configuration.buildSessionFactory();
             }catch (HibernateException exception){
                 System.err.println(exception);

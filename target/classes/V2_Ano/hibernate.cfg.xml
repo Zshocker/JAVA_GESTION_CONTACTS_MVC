@@ -9,6 +9,6 @@
         <property name="connection.pool_size">23</property>
         <property name="current_session_context_class">thread</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <mapping resource="Contact.hbm.xml"/>
+        <mapping class="ma.fstm.ilisi.Gest_Contact_HibAno.Model.bo.Contact"/>
     </session-factory>
 </hibernate-configuration>
