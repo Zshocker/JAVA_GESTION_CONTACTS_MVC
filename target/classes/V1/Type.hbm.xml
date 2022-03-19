@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ma.fstm.ilisi.Gest_Contact.Model.bo">
+    <class name="Type" table="types">
+        <id name="type" type="string">
+            <generator class="identity"/>
+        </id>
+        <set name="contacts" lazy="true" inverse="true" fetch="select" table="contacts" >
+            <key>
+                <column name="type" not-null="true"/>
+            </key>
+            <one-to-many class="Contact"/>
+        </set>
+    </class>
+</hibernate-mapping>

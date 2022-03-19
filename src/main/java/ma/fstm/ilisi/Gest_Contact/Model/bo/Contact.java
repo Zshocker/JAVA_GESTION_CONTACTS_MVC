@@ -9,7 +9,7 @@ public class Contact implements Serializable {
     private String nom;    
     private String prenom;
     private String email;
-
+    private Type types;
     public int getId() {
         return id;
     }
@@ -61,14 +61,23 @@ public class Contact implements Serializable {
     public Contact() {
     }
 
+    public Type getTypes() {
+        return types;
+    }
+
+    public void setTypes(Type types) {
+        this.types = types;
+    }
+
     @Override
     public String toString() {
-        return "{" +
-                "tel='" + tel + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return
+                "id=" + id +
+                        ", tel='" + tel + '\'' +
+                        ", nom='" + nom + '\'' +
+                        ", prenom='" + prenom + '\'' +
+                        ", email='" + email + '\'' +
+                        ", type=" + types ;
     }
 
     @Override

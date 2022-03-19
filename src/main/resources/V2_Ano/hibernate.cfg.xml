@@ -10,5 +10,6 @@
         <property name="current_session_context_class">thread</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <mapping class="ma.fstm.ilisi.Gest_Contact_HibAno.Model.bo.Contact"/>
+        <mapping class="ma.fstm.ilisi.Gest_Contact_HibAno.Model.bo.Type"/>
     </session-factory>
 </hibernate-configuration>

@@ -8,5 +8,27 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/Contacts</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="V2_Ano:hibernate.cfg.xml/Hibernate" uuid="b12fd9e3-2c37-4c32-b906-d93ed75b1104">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+E:/JAVA EE PROJECTS/GestionContacts/src/main/resources/V2_Ano/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Contacts</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="V1:hibernate.cfg.xml/Hibernate" uuid="ce059dea-1128-4137-b713-9ef96b98e341">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+E:/JAVA EE PROJECTS/GestionContacts/src/main/resources/V1/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Contacts</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

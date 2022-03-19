@@ -13,6 +13,13 @@ public class Contact implements Serializable
     private String nom;    
     private String prenom;
     private String email;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type")
+    private Type types;
+
+    public Type getTypes() {
+        return types;
+    }
 
     public int getId() {
         return id;
@@ -67,12 +74,13 @@ public class Contact implements Serializable
 
     @Override
     public String toString() {
-        return "{" +
-                "tel='" + tel + '\'' +
+        return
+                "id=" + id +
+                ", tel='" + tel + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
-                '}';
+                ", type=" + types ;
     }
 
     @Override
@@ -81,5 +89,9 @@ public class Contact implements Serializable
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
         return id == contact.id;
+    }
+
+    public void setTypes(Type types) {
+        this.types = types;
     }
 }

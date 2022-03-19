@@ -1,7 +1,9 @@
 package ma.fstm.ilisi.Gest_Contact_HibAno.View;
 
 import ma.fstm.ilisi.Gest_Contact_HibAno.Controller.ContactController;
+import ma.fstm.ilisi.Gest_Contact_HibAno.Controller.TypeController;
 import ma.fstm.ilisi.Gest_Contact_HibAno.Model.bo.Contact;
+import ma.fstm.ilisi.Gest_Contact_HibAno.Model.bo.Type;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -25,32 +27,33 @@ public class MainApp
     private JButton Delete;
     private JComboBox<Contact> ComboDelete;
     private JTextField Prenom_up;
-    private ContactController controller;
+    private JComboBox<Type> type_add;
+    private JComboBox<Type> type_up;
+    private ContactController contactController;
+
     public MainApp()
     {
         Add_Contact_butt.addActionListener(e -> {
-            boolean b= controller.insertContact(Nom.getText(),Prenom.getText(), Tel.getText(), Email.getText());
+            boolean b= contactController.insertContact(Nom.getText(),Prenom.getText(), Tel.getText(), Email.getText(), (Type) type_add.getSelectedItem());
             if(b){
-            Nom.setText("");
-            Prenom.setText("");
-            Tel.setText("");
-            Email.setText("");
-            Refresh_Tables();
-            JOptionPane.showMessageDialog(MainPannel.getParent(), "Done!");
+                Nom.setText("");
+                Prenom.setText("");
+                Tel.setText("");
+                Email.setText("");
+                Refresh_Tables();
+                JOptionPane.showMessageDialog(MainPannel.getParent(), "Done!");
             }else{
                 JOptionPane.showMessageDialog(MainPannel.getParent(), "Nop!");
             }
         });
         Update_Contact_butt.addActionListener(e -> {
-            Contact c=null;
+            Contact c;
             if((c=(Contact) ComboUpdate.getSelectedItem())!=null){
-            controller.updateContact(c, Nom_up.getText(),Prenom_up.getText(), Tel_up.getText(), Email_up.getText());
-            Refresh_Tables();
+                contactController.updateContact(c, Nom_up.getText(),Prenom_up.getText(), Tel_up.getText(), Email_up.getText(), (Type) type_up.getSelectedItem());
+                Refresh_Tables();
                 JOptionPane.showMessageDialog(MainPannel.getParent(), "Done!");
-
             }
         });
-
         ComboUpdate.addItemListener(e -> {
             Contact c=null;
             if((c=(Contact) ComboUpdate.getSelectedItem())!=null){
@@ -58,12 +61,13 @@ public class MainApp
                 Nom_up.setText(c.getNom());
                 Tel_up.setText(c.getTel());
                 Email_up.setText(c.getEmail());
+                type_up.setSelectedItem(c.getTypes());
             }
         });
         Delete.addActionListener(e -> {
             Contact c=null;
             if((c=(Contact) ComboDelete.getSelectedItem())!=null){
-                controller.deleteContact(c);
+                contactController.deleteContact(c);
                 Refresh_Tables();
                 JOptionPane.showMessageDialog(MainPannel.getParent(), "Done!");
 
@@ -72,17 +76,25 @@ public class MainApp
     }
 
     private void createUIComponents() {
-        controller=new ContactController();
+        contactController =new ContactController();
+        TypeController typeController = new TypeController();
         MainTable =new JTable();
         ComboDelete =new JComboBox<Contact>();
         ComboUpdate =new JComboBox<Contact>();
+        type_add=new JComboBox<Type>();
+        type_up=new JComboBox<Type>();
+        List<Type> types= typeController.getAllTypes();
+        for (Type t : types) {
+            type_up.addItem(t);
+            type_add.addItem(t);
+        }
         Refresh_Tables();
     }
     private void Refresh_Tables() {
         ComboUpdate.removeAllItems();
         ComboDelete.removeAllItems();
-        List<Contact> contacts =controller.AllContacts();
-        String[][] sq = new String[contacts.size()][4];
+        List<Contact> contacts = contactController.AllContacts();
+        Object[][] sq = new String[contacts.size()][5];
         int i = 0;
         for (Contact entry : contacts)
         {
@@ -90,11 +102,12 @@ public class MainApp
             sq[i][1] = entry.getPrenom();
             sq[i][2] = entry.getTel();
             sq[i][3] = entry.getEmail();
+            sq[i][4] = entry.getTypes().toString();
             i++;
             ComboUpdate.addItem(entry);
             ComboDelete.addItem(entry);
         }
-        MainTable.setModel(new DefaultTableModel(sq, new String[] { "Nom", "Prenom","Tel","Email" }));
+        MainTable.setModel(new DefaultTableModel(sq, new String[] { "Nom", "Prenom","Tel","Email","Type" }));
         MainTable.disable();
     }
 

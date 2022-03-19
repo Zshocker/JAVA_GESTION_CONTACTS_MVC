@@ -4,12 +4,14 @@
     <class name="Contact" table="contacts">
         <id name="id" type="int" >
             <generator class="identity">
-
             </generator>
         </id>
         <property name="tel" type="string" not-null="true"  />
         <property name="nom" type="string" />
         <property name="prenom" type="string" />
         <property name="email" type="string" />
+        <many-to-one name="types" class="Type" lazy="false" >
+            <column name="type" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

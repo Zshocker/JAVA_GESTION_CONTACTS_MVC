@@ -10,5 +10,6 @@
         <property name="current_session_context_class">thread</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <mapping resource="V1/Contact.hbm.xml"/>
+        <mapping resource="V1/Type.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
