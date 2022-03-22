@@ -58,6 +58,7 @@ public class DAOContact implements IDAOContact{
 
     @Override
     public void update(Contact user) {
+
         SessionFactory sessionFactory= FabricSession.getSessionFactory();
         Session session= sessionFactory.getCurrentSession();
         Transaction tx=session.beginTransaction();
@@ -72,7 +73,8 @@ public class DAOContact implements IDAOContact{
     }
 
     @Override
-    public boolean delete(Contact user) {
+    public boolean delete(Contact user)
+    {
         SessionFactory sessionFactory= FabricSession.getSessionFactory();
         Session session= sessionFactory.getCurrentSession();
         Transaction tx=session.beginTransaction();
@@ -84,6 +86,21 @@ public class DAOContact implements IDAOContact{
             tx.rollback();
             System.err.println(e);
             return false;
+        }
+    }
+    public Contact getByid(int id){
+        SessionFactory sessionFactory= FabricSession.getSessionFactory();
+        Session session= sessionFactory.getCurrentSession();
+        Transaction tx=session.beginTransaction();
+        try
+        {
+            Contact contact=session.get(Contact.class,id);
+            tx.commit();
+            return contact;
+        }catch (HibernateException e){
+            tx.rollback();
+            System.err.println(e);
+            return null;
         }
     }
 }

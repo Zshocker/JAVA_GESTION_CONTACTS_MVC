@@ -18,8 +18,8 @@ public class ContactController {
     public boolean insertContact(String Nom, String Prenom, String tel, String email ,Type type){
         return servise.insertContact(Nom,Prenom,tel,email,type);
     }
-    public void updateContact(Contact con, String Nom, String Prenom, String tel, String email,Type type ){
-        servise.Update_Contact(con, Nom, Prenom, tel, email,type);
+    public boolean updateContact(Contact con, String Nom, String Prenom, String tel, String email,Type type ){
+       return  servise.Update_Contact(con, Nom, Prenom, tel, email,type);
     }
     public List<Contact> AllContacts()
     {
